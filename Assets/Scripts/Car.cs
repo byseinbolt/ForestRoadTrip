@@ -24,17 +24,18 @@ public class Car : MonoBehaviour
    private float _currentBrakingForce;
    private float _currentTurnAngle;
 
-   private void FixedUpdate()
+   private void Update()
    {
       _currentAcceleration = _acceleration * Input.GetAxis("Vertical");
-      SpeedUp();
-        
       _currentBrakingForce = Input.GetKey(KeyCode.Space) ? _brakingForce : 0f;
-      Brake();
-        
       _currentTurnAngle = _maxTurnAngle * Input.GetAxis("Horizontal");
+   }
+
+   private void FixedUpdate()
+   {
+      SpeedUp();
+      Brake();
       Turn();
-      
       
       UpdateWheel(_frontRight, _frontRightTransform);
       UpdateWheel(_frontLeft, _frontLeftTransform);
